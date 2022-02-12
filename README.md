@@ -80,7 +80,7 @@ Que le caractère soit 1 ou 0, le code hexadécimal correspondant au bouton muet
 Remarque : Pour obtenir le code hexadécimal du bouton muet d’une télécommande, nous avons testé préalablement le signal émis par celle-ci avec un capteur infrarouge.
 
 
-III-	Rendu final
+# III-	Rendu final
 
 ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/92324336/153722804-fcec1526-7dc3-484a-8d9e-72303da4d81e.gif)
 
