@@ -1,5 +1,5 @@
 # TV_Ad_Detector
- Traite image TV pour rendre mettre en muet si pub detectée
+ Traite image TV pour mettre en muet si pub detectée
 
 # I-	Conception électronique 
 
@@ -37,7 +37,7 @@ b)	Traitement du flux
 
 La première chose à réaliser sur OpenCV est la capture du flux vidéo. Les chaines TV Orange nous arrivent via la carte d’acquisition, c’est pourquoi nous mettrons le port sur 1.
 Nous allons ensuite centrer l’image pour n’avoir à analyser que la zone où le logo pourrait se trouver (et ainsi enlever les chances de détecter d’autres objets ressemblant à celui que l’on cherche). 
-Enfin nous transformerons le « morceau » d’image en nuance de gris et nous utiliserons la méthode threshold().
+Enfin nous transformerons le « morceau » d’image en nuance de gris.
 Les paramètres implémentés dans threshold() sont les valeurs 230 et 255 : chaque pixel inferieur à 230 (soit presque toutes les couleurs sauf le blanc) devient blanc et les pixels supérieurs deviennent noirs. 
 Ainsi la couleur blanche du logo devient noire et son environnement devient blanc, ce qui facilite grandement sa détection.
 
@@ -51,15 +51,20 @@ Nous allons donc tout d’abord déclarer une variable ayant accès à toutes le
 
 Ensuite, après avoir traité notre image, nous déclarons une seconde variable et nous appelons la méthode detectMultiScale(). Cette méthode va se servir de la variable contenant toutes les données du fichier Xml pour analyser l’image.
 
-Ainsi dès que le logo est détecté, la deuxième variable, qui est un tableau, devient non nulle. Nous pouvons aussi utiliser une boucle for avec les coordonnées du tableau qui correspondent à la position du logo pour dessiner un rectangle autour.
- 
+Ainsi dès que le logo est détecté, la deuxième variable, qui est un tableau, devient non nulle.
+
+
 Détection des pubs :
+
+
 Nous allons utiliser la bibliothèque time pour permettre au programme d’analyser pendant 15 secondes l’image puis d’attendre à nouveau 15 secondes pour à nouveau lancer une analyse. 
 Pourquoi 15 secondes ?
 
 -15 secondes de battement permettent une vérification fréquente pour ne pas perdre plusieurs minutes devant une pub
 
 -15 secondes d’analyse permettent de donner assez de temps pour que les plans de la caméra changent si jamais le logo est mal détecté
+
+
 Dès que le temps d’attente de 15 secondes se termine, la vérification peut commencer :
 
 A chaque détection, un compteur s’incrémente pendant 15 autres secondes. A la fin du temps imparti, si le compteur est supérieur à 50 alors nous sommes sûrs que le logo est présent et nous pouvons dire que nous regardons une émission. Dans le cas contraire, alors une pub est jouée.
@@ -76,3 +81,6 @@ Remarque : Pour obtenir le code hexadécimal du bouton muet d’une télécomman
 
 
 III-	Rendu final
+
+![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/92324336/153722804-fcec1526-7dc3-484a-8d9e-72303da4d81e.gif)
+
